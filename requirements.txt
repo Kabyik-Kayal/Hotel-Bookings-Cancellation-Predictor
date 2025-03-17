@@ -1,0 +1,7 @@
+numpy
+pandas
+matplotlib
+google-cloud-storage
+scikit-learn
+imbalanced-learn
+lightgbm
