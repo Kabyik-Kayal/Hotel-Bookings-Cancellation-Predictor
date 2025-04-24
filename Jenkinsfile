@@ -41,8 +41,8 @@ pipeline{
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
                         gcloud config set project ${GCP_PROJECT}
                         gcloud auth configure-docker --quiet
-                        sudo docker build -t gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest .
-                        sudo docker push gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest
+                        docker build -t gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest .
+                        docker push gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest
                         '''
                     }
                 }
