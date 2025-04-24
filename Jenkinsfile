@@ -37,12 +37,12 @@ pipeline{
                     script{
                         echo 'Building and Pushing Docker Image to Google Cloud'
                         sh '''
-                        export PATH=$PATH:$(GCLOUD_PATH)
+                        export PATH=$PATH:${GCLOUD_PATH}
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
                         gcloud config set project ${GCP_PROJECT}
                         gcloud auth configure-docker --quiet
-                        docker build -t gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest .
-                        docker push gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest
+                        sudo docker build -t gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest .
+                        sudo docker push gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest
                         '''
                     }
                 }
