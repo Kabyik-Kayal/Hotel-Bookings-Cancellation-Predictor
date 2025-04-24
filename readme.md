@@ -7,6 +7,7 @@ Retrieve Data from Google Cloud Storage Bucket
 
 # Docker_Build (Ubuntu/Linux)
 
+```bash
 sudo docker run -d \
   --name jenkins-dind \
   --privileged \
@@ -14,6 +15,8 @@ sudo docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v jenkins_home:/var/jenkins_home \
   jenkins-dind
+
+```
 
 # Setup Jenkins
 
