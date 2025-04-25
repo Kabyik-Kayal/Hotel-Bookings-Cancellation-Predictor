@@ -48,5 +48,25 @@ pipeline{
                 }
             }
         }
+
+        stage('Deploy to Google Cloud Run'){
+            steps{
+                withCredentials([file(credentialsId : 'GCP-Hotel-Key', variable : 'GOOGLE_APPLICATION_CREDENTIALS')]){
+                    script{
+                        echo 'Deploying Docker Image to Google Cloud Run'
+                        sh '''
+                        export PATH=$PATH:${GCLOUD_PATH}
+                        gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
+                        gcloud config set project ${GCP_PROJECT}
+                        gcloud run deploy hotel-bookings-cancellation-predictor \
+                        --image gcr.io/${GCP_PROJECT}/hotel-bookings-cancellation-predictor:latest \
+                        --platform=managed \
+                        --region=us-central1 \
+                        --allow=unauthenticated
+                        '''
+                    }
+                }
+            }
+        }
     }
 }
